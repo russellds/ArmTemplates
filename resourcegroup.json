@@ -23,7 +23,8 @@
             "location": "[parameters('rgLocation')]",
             "name": "[parameters('rgName')]",
             "tags": {
-                "environment": "test"
+                "environment": "test",
+                "created by": "rds"
             },
             "properties": {}
         }
