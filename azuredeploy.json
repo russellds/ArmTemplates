@@ -1,0 +1,45 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "rgName": {
+           "type": "string",
+           "metadata": {
+                "description": "Name of the ResourceGroup."
+            }
+        },
+        "rgLocation": {
+           "type": "string",
+           "metadata": {
+                "description": "Location for the ResourceGroup."
+            }
+        }
+    },
+    "variables": {
+        "templateLink": "https://raw.githubusercontent.com/russellds/ArmTemplates/d0c9004b7e4c9e0a1e2aca83fce7b79880498947/resourcegroup.json"
+    },
+    "resources": [
+        {
+            "apiVersion": "2018-05-01",
+            "name": "resourceGroupTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "location": "[parameters('rgLocation')]",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink" : {
+                    "uri": "[variables('templateLink')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "rgName": {
+                        "value": "[parameters('rgName')]"
+                    },
+                    "rgLocation": {
+                        "value": "[parameters('rgLocation')]"
+                    }
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}
